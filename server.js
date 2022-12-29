@@ -10,6 +10,16 @@ const PORT = 3000;
 server.listen(PORT);
 console.log(`Listening on port ${PORT}...`);
 
+let readyPlayerCount = 0;
+
 io.on('connection', (socket) => {
 	console.log('A user connected... ', socket.id);
+	socket.on('ready', () => {
+		console.log('Player is ready... ', socket.id);
+		readyPlayerCount++;
+
+		if (readyPlayerCount === 2) {
+			io.emit('startGame', socket.id);
+		}
+	});
 });
