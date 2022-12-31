@@ -14,6 +14,7 @@ let readyPlayerCount = 0;
 
 io.on('connection', (socket) => {
 	console.log('A user connected... ', socket.id);
+	
 	socket.on('ready', () => {
 		console.log('Player is ready... ', socket.id);
 		readyPlayerCount++;
@@ -22,7 +23,12 @@ io.on('connection', (socket) => {
 			io.emit('startGame', socket.id);
 		}
 	});
+	
 	socket.on('paddleMove', (paddleData) => {
 		socket.broadcast.emit('paddleMove', paddleData);
+	});
+
+	socket.on('paddleMove', (ballData) => {
+		socket.broadcast.emit('paddleMove', ballData);
 	});
 });
