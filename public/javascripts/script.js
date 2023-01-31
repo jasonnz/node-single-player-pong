@@ -1,10 +1,11 @@
-// Canvas Related
+// Canvas Related 
 const canvas = document.createElement('canvas');
 const context = canvas.getContext('2d');
 const socket = io('/pong');
 let paddleIndex = 0;
 let isReferee = false;
 
+// x and y
 let width = 500;
 let height = 700;
 
